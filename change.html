@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+ <div style= "float: left; margin-left: 35px;" class= "container">
+    <h1 style ="color: crimson;text-align: center; font-weight: bold; text-transform: uppercase; padding: 25px; padding-bottom: 0px;"><i>movie Heropanti</i></h1>
+<div class= "row my-5">
+
+    <div class= "col-lg-3">
+
+        <div class="card" style="width: 100%;">
+            <img src="..." class="card-img-top" alt="..." id = "ImgIns">
+            
+        
+            <div class="card-body bg-secondary">
+                <div  class="p-2 text-nowrap border border-primary; bg-info text-white">
+               
+              <h3 class="card-title" id = "TitleIns">Title:</h3>
+
+              <p class="card-text" id = "actor"> <b> Actors: </b> </p>
+              <p class="card-text" id = "genere">Genere: </p>
+              <p class="card-text" id = "writer">Writer: </p>
+              <p class="card-text" id = "director">Director: </p>
+              <p class="card-text" id = "country">Country: </p>
+              <p class="card-text" id = "boxOffice">BoxOffice: </p>
+
+              <a href="Work.html" class="btn btn-danger"><i>Go somewhere</i></a>
+            </div>
+            
+          </div>
+
+    </div>     
+</div> 
+
+           
+<div class= "col-lg-9">
+       <div class= "border border-info col-md-12"> 
+            <h1><i>JSON FORAMTE BASE TEXT VISSIBLE</i></h1>
+            <p id = "para"></p> <br>
+        </div>
+        <div class= "border border-info col-md-12 mt-4" >
+            <h1><i>OBJECT FORAMTE BASE TEXT VISSIBLE</i></h1>
+            <p id = "para2"></p>
+        </div>
+        
+    </div>
+   
+</div>
+
+
+         <script>
+        
+    
+        var xmlhttp = new XMLHttpRequest();
+
+        var url = "data2.json"
+    
+
+        xmlhttp.onreadystatechange = function(){
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+
+                var myArr = JSON.parse(xmlhttp.responseText);//obj
+
+               document.getElementById("ImgIns").setAttribute("src",myArr['Poster']);
+               document.getElementById("TitleIns").innerHTML +=myArr ['Title'];
+               document.getElementById("actor").innerHTML +=myArr ['Actors'];
+               document.getElementById("genere").innerHTML +=myArr ['Genre'];
+               document.getElementById("writer").innerHTML +=myArr ['Writer'];
+               document.getElementById("director").innerHTML +=myArr ['Director'];
+               document.getElementById("country").innerHTML +=myArr ['Country'];
+               document.getElementById("boxOffice").innerHTML +=myArr ['BoxOffice'];
+
+                //JSON Foramte text
+            var arr1 = JSON.stringify(myArr)
+            document.getElementById('para').innerHTML = "<b>" +arr1+ "</b>" + "<br>"
+
+
+
+
+            //Object Formate Text
+            for(var key in myArr){
+                document.getElementById('para2').innerHTML += "<b>"+key+ "</b>"+ " "+myArr[key]+ "<br>"
+            }
+
+
+
+        }
+    }
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+</script>
+</body>
+</html>
